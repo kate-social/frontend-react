@@ -1,13 +1,11 @@
-import { InferActionType } from './store'
 import { fetchUserAuthData } from './auth-reducer'
 
 const initialState = {
   isInitialized: false,
 }
 
-type ActionType = InferActionType<typeof actions>
 
-export const appReducer = (state = initialState, action: ActionType) => {
+export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'KS/APP/INITIALIZED_SUCCESS':
       return {
@@ -19,10 +17,10 @@ export const appReducer = (state = initialState, action: ActionType) => {
   }
 }
 
-export const initializeApp = (token: string) => (dispatch: any) => {
+export const initializeApp = (token) => (dispatch) => {
   return Promise.all([dispatch(fetchUserAuthData(token))]).then(dispatch(actions.initializedSuccess()))
 }
 
 export const actions = {
-  initializedSuccess: () => ({ type: 'KS/APP/INITIALIZED_SUCCESS' } as const),
+  initializedSuccess: () => ({ type: 'KS/APP/INITIALIZED_SUCCESS' }),
 }
