@@ -1,0 +1,82 @@
+.pageWrapper {
+  background-image: url('./join_form_bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 5%;
+}
+.form {
+  font-family: Roboto;
+  font-weight: 100;
+  width: 500px;
+  border: 1px #fff solid;
+  color: #fff;
+  backdrop-filter: blur(20px);
+  /* transition: backdrop-filter 5s; */
+}
+.form__header {
+  font-size: 3em;
+  font-weight: 100;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 75px;
+}
+.form__textfield {
+  position: relative;
+  margin: 30px 50px;
+  border: 1px #fff solid;
+}
+.form__textfield--error {
+  border: 1px red solid;
+}
+.form__input {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 1.5em;
+  width: 100%;
+  padding: 20px 20px;
+  margin: 0 auto;
+  outline: none;
+}
+.form__input::placeholder {
+  color: #fff;
+  font-weight: 100;
+}
+.form__submit {
+  font-family: Roboto;
+  display: block;
+  background: none;
+  color: #fff;
+  font-size: 2em;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 35px;
+  font-weight: 100;
+  line-height: 2;
+  padding: 0.5em 2em;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 50px;
+  transition: border-color 0.2s linear;
+  border-color: rgba(255, 255, 255, 0);
+}
+.form__submit:hover {
+  border-color: rgba(255, 255, 255, 100);
+}
+.form__login-text {
+  font-size: 1.2em;
+  font-weight: 100;
+  text-align: center;
+}
+.form__login-text a{
+  /* text-decoration: none; */
+  color: white;
+}
