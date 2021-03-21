@@ -2,14 +2,13 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/auth-reducer'
 import { useCookies } from 'react-cookie'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import classes from './LoginPage.module.css'
-import axios from 'axios'
 
 
 export const LoginPage = () => {
-  const { register, handleSubmit, formState, setError, errors } = useForm({
-    mode: 'onBlur',
+  const { register, handleSubmit, setError, errors } = useForm({
+    mode: 'onChange',
     reValidateMode: 'onChange',
   })
 
@@ -29,8 +28,8 @@ export const LoginPage = () => {
       setError('password', 'wrong password')
     })
   }
-  return <div className={classes.pageWrapper}>
 
+  return <div className={classes.pageWrapper}>
     <div className={classes.wrapper}>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={classes.form__header}>Log In</h1>
@@ -43,7 +42,7 @@ export const LoginPage = () => {
             ref={register({ required: true })}
           />
         </div>
-        <div className={classes.form__textfield + (errors.login ? ' ' + classes['form__textfield--error'] : '')}>
+        <div className={classes.form__textfield + (errors.password ? ' ' + classes['form__textfield--error'] : '')}>
           <input
             name='password'
             className={classes.form__input}
@@ -51,6 +50,9 @@ export const LoginPage = () => {
             placeholder="Password"
             ref={register({ required: true })}
           />
+        </div>
+        <div className={classes['form__join-text']}>
+          Not a user yet? <Link to='/join'>Join now!</Link>
         </div>
         <button className={classes.form__submit} type="submit">Log In</button>
       </form>

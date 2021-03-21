@@ -4,6 +4,7 @@ import { initializeApp } from './redux/app-reducer'
 import { useCookies } from 'react-cookie'
 import { Route, Switch } from 'react-router-dom'
 import { LoginPage } from './components/LoginPage/LoginPage'
+import { JoinPage } from './components/JoinPage/JoinPage'
 
 export const App = () => {
   const [cookies] = useCookies(['token'])
@@ -25,6 +26,7 @@ export const App = () => {
     <div className='App'>
       <Switch>
         <Route path={'/login'}><LoginPage /></Route>
+        <Route path={'/Join'}><JoinPage /></Route>
       </Switch>
     </div>
   )

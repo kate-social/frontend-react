@@ -18,7 +18,7 @@ export const authReducer = (state = initialState, action) => {
   }
 }
 
-export const fetchUserAuthData = (token) => async (dispatch) => {
+export const fetchUserAuthData = (token) => async dispatch => {
   const authData = await UsersAPI.getMe(token)
   if (authData.ok) {
     dispatch(actions.setUserData(authData.response.id, authData.response.username, true))
@@ -27,8 +27,8 @@ export const fetchUserAuthData = (token) => async (dispatch) => {
   dispatch(actions.setUserData(null, null, false))
 }
 
-export const login = (login, password) => async (dispatch) => {
-  const result = await AuthAPI.login(login, password)
+export const login = (user_login, password) => async dispatch => {
+  const result = await AuthAPI.login(user_login, password)
   if (result.ok) {
     const token = result.response.token
     dispatch(actions.setToken(token))
@@ -38,6 +38,13 @@ export const login = (login, password) => async (dispatch) => {
   return null
 }
 
+export const register = (user_login, password) => async dispatch => {
+  const result = await AuthAPI.register(user_login, password)
+  if (result.ok) {
+    return await dispatch(login(user_login, password))
+  }
+  return null
+}
 
 export const actions = {
   setUserData: (id, username, isAuthenticated) => ({

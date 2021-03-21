@@ -1,5 +1,5 @@
 .pageWrapper {
-  background-image: url('./login_form_bg.jpg');
+  background-image: url('./join_form_bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
@@ -71,12 +71,12 @@
 .form__submit:hover {
   border-color: rgba(255, 255, 255, 100);
 }
-.form__join-text {
+.form__login-text {
   font-size: 1.2em;
   font-weight: 100;
   text-align: center;
 }
-.form__join-text a{
+.form__login-text a{
   /* text-decoration: none; */
   color: white;
 }
