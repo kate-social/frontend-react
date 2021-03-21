@@ -1,14 +1,12 @@
 import { APIInstance } from './api'
 
 export const AuthAPI = {
-  login(login: string, password: string) {
-    return APIInstance.post('auth/user', {
+  async login(login, password) {
+    const response = await APIInstance.post('auth/login', {
       login,
       password,
-      scope: 2 ** 5,
-      server_cookie: true,
-    }).then((res) => {
-      return res
+      scope: 2 ** 15,
     })
+    return response.data
   },
 }
