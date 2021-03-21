@@ -21,7 +21,7 @@ export const authReducer = (state = initialState, action) => {
 export const fetchUserAuthData = (token) => async (dispatch) => {
   const authData = await UsersAPI.getMe(token)
   if (authData.ok) {
-    dispatch(actions.setUserData(authData.id, authData.username, true))
+    dispatch(actions.setUserData(authData.response.id, authData.response.username, true))
     return
   }
   dispatch(actions.setUserData(null, null, false))
