@@ -25,3 +25,4 @@ jobs:
           url: '${{ secrets.DEPLOY_HOST }}'
           method: 'POST'
           customHeaders: '{"token":"${{ secrets.DEPLOY_TOKEN }}"}'
+          timeout: 60000
