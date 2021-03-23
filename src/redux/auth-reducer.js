@@ -11,6 +11,8 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'KS/AUTH/SET_USER_DATA':
+      return { ...state, ...action.payload }
     case 'KS/AUTH/SET_TOKEN':
       return { ...state, token: action.payload.token }
     default:
