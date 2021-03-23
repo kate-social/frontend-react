@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Docker
+        run: |
+          sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.pkg.github.com
+          sudo docker build -t docker.pkg.github.com/kate-social/frontend-react/frontend:latest .
+          sudo docker push docker.pkg.github.com/kate-social/frontend-react/frontend:latest
+
+      - name: Deploy
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: '${{ secrets.DEPLOY_HOST }}'
+          method: 'POST'
+          customHeaders: '{"token":"${{ secrets.DEPLOY_TOKEN }}"}'
