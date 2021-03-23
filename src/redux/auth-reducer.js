@@ -8,7 +8,6 @@ const initialState = {
   isAuthenticated: false,
 }
 
-
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'KS/AUTH/SET_USER_DATA':
@@ -20,10 +19,16 @@ export const authReducer = (state = initialState, action) => {
   }
 }
 
-export const fetchUserAuthData = (token) => async dispatch => {
+export const fetchUserAuthData = token => async dispatch => {
   const authData = await UsersAPI.getMe(token)
   if (authData.ok) {
-    dispatch(actions.setUserData(authData.response.id, authData.response.username, true))
+    dispatch(
+      actions.setUserData(
+        authData.response.id,
+        authData.response.username,
+        true,
+      ),
+    )
     return
   }
   dispatch(actions.setUserData(null, null, false))
@@ -53,5 +58,5 @@ export const actions = {
     type: 'KS/AUTH/SET_USER_DATA',
     payload: { id, username, isAuthenticated },
   }),
-  setToken: (token) => ({ type: 'KS/AUTH/SET_TOKEN', payload: { token } }),
+  setToken: token => ({ type: 'KS/AUTH/SET_TOKEN', payload: { token } }),
 }

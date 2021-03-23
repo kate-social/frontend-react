@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie'
 import { Link, useHistory } from 'react-router-dom'
 import classes from './LoginPage.module.css'
 
-
 export const LoginPage = () => {
   const { register, handleSubmit, setError, errors } = useForm({
     mode: 'onChange',
@@ -16,9 +15,8 @@ export const LoginPage = () => {
   const [, setCookie] = useCookies(['token'])
   const history = useHistory()
 
-
-  const onSubmit = (data) => {
-    dispatch(login(data.login, data.password)).then((res) => {
+  const onSubmit = data => {
+    dispatch(login(data.login, data.password)).then(res => {
       if (res) {
         setCookie('token', res)
         history.push('/')
@@ -29,33 +27,47 @@ export const LoginPage = () => {
     })
   }
 
-  return <div className={classes.pageWrapper}>
-    <div className={classes.wrapper}>
-      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={classes.form__header}>Log In</h1>
-        <div className={classes.form__textfield + (errors.login ? ' ' + classes['form__textfield--error'] : '')}>
-          <input
-            name='login'
-            className={classes.form__input}
-            type="text"
-            placeholder="Username"
-            ref={register({ required: true })}
-          />
-        </div>
-        <div className={classes.form__textfield + (errors.password ? ' ' + classes['form__textfield--error'] : '')}>
-          <input
-            name='password'
-            className={classes.form__input}
-            type="password"
-            placeholder="Password"
-            ref={register({ required: true })}
-          />
-        </div>
-        <div className={classes['form__join-text']}>
-          Not a user yet? <Link to='/join'>Join now!</Link>
-        </div>
-        <button className={classes.form__submit} type="submit">Log In</button>
-      </form>
+  return (
+    <div className={classes.pageWrapper}>
+      <div className={classes.wrapper}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+          <h1 className={classes.form__header}>Log In</h1>
+          <div
+            className={
+              classes.form__textfield +
+              (errors.login ? ' ' + classes['form__textfield--error'] : '')
+            }
+          >
+            <input
+              name='login'
+              className={classes.form__input}
+              type='text'
+              placeholder='Username'
+              ref={register({ required: true })}
+            />
+          </div>
+          <div
+            className={
+              classes.form__textfield +
+              (errors.password ? ' ' + classes['form__textfield--error'] : '')
+            }
+          >
+            <input
+              name='password'
+              className={classes.form__input}
+              type='password'
+              placeholder='Password'
+              ref={register({ required: true })}
+            />
+          </div>
+          <div className={classes['form__join-text']}>
+            Not a user yet? <Link to='/join'>Join now!</Link>
+          </div>
+          <button className={classes.form__submit} type='submit'>
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
+  )
 }

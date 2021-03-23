@@ -18,18 +18,19 @@ export const App = () => {
   }, [dispatch, cookies.token])
 
   if (!isInitialized) {
-    return <div className='App'>
-      Loading... Please wait.
-    </div>
+    return <div className='App'>Loading... Please wait.</div>
   }
 
   return (
     <div className='App'>
       <Switch>
-        <NonAuthenticatedRoute path={'/login'}><LoginPage /></NonAuthenticatedRoute>
-        <NonAuthenticatedRoute path={'/join'}><JoinPage /></NonAuthenticatedRoute>
+        <NonAuthenticatedRoute path={'/login'}>
+          <LoginPage />
+        </NonAuthenticatedRoute>
+        <NonAuthenticatedRoute path={'/join'}>
+          <JoinPage />
+        </NonAuthenticatedRoute>
       </Switch>
     </div>
   )
 }
-

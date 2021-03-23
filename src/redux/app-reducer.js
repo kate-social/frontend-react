@@ -4,7 +4,6 @@ const initialState = {
   isInitialized: false,
 }
 
-
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'KS/APP/INITIALIZED_SUCCESS':
@@ -17,8 +16,10 @@ export const appReducer = (state = initialState, action) => {
   }
 }
 
-export const initializeApp = (token) => async (dispatch) => {
-  return Promise.all([dispatch(fetchUserAuthData(token))]).then(() => { dispatch(actions.initializedSuccess()) })
+export const initializeApp = token => async dispatch => {
+  return Promise.all([dispatch(fetchUserAuthData(token))]).then(() => {
+    dispatch(actions.initializedSuccess())
+  })
 }
 
 export const actions = {

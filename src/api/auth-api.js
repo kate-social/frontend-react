@@ -15,5 +15,5 @@ export const AuthAPI = {
       password,
     })
     return response.data
-  }
+  },
 }
