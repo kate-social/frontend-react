@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import { Route, Switch } from 'react-router-dom'
 import { LoginPage } from './components/LoginPage/LoginPage'
 import { JoinPage } from './components/JoinPage/JoinPage'
+import { NonAuthenticatedRoute } from './components/NonAuthenticatedRoute'
 
 export const App = () => {
   const [cookies] = useCookies(['token'])
@@ -25,8 +26,8 @@ export const App = () => {
   return (
     <div className='App'>
       <Switch>
-        <Route path={'/login'}><LoginPage /></Route>
-        <Route path={'/Join'}><JoinPage /></Route>
+        <NonAuthenticatedRoute path={'/login'}><LoginPage /></NonAuthenticatedRoute>
+        <NonAuthenticatedRoute path={'/join'}><JoinPage /></NonAuthenticatedRoute>
       </Switch>
     </div>
   )
